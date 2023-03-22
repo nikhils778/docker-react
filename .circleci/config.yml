@@ -2,7 +2,7 @@ version: 2.1
 executors:
   my-custom-executor:
     docker:
-      - image: nikhil7841/docker-react
+      - image: nikhil7841/docker-create
         auth:
           # ensure you have first added these secrets
           # visit app.circleci.com/settings/project/github/nikhils778/docker-react/environment-variables
@@ -15,7 +15,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          docker run nikhil7841/docker-react npm run test -- --coverage
+          docker run nikhil7841/docker-create npm run test -- --coverage
 
 workflows:
   my-custom-workflow:
