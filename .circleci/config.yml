@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Build image
           command: |
-            docker build -t nikhil7841/docker-app dockerfile.dev
+            docker build -t nikhil7841/docker-app dockerfile.dev .
       - run:
           name: Run tests
           command: |
