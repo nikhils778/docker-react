@@ -14,5 +14,5 @@ jobs:
       - run:
           name: Run tests
           command: |
-            docker run -it nikhil7841/docker-app npm run test -- --coverage
+            docker run -it nikhil7841/docker-app npm run test -- --coverage --watchAll=false
 
