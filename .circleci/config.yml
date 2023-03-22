@@ -6,14 +6,11 @@ jobs:
       - image: circleci/python:3.8
     steps:
       - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            sudo apt-get update && sudo apt-get install -y docker
+      - setup_remote_docker
       - run:
           name: Build image
           command: |
-            docker build -t nikhil7841/docker-app -f dockerfile.dev .
+            docker build -t nikhil7841/docker-app dockerfile.dev
       - run:
           name: Run tests
           command: |
