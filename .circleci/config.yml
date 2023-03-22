@@ -1,23 +1,21 @@
 version: 2.1
-executors:
-  my-custom-executor:
-    docker:
-      - image: nikhil7841/docker-create
-        auth:
-          # ensure you have first added these secrets
-          # visit app.circleci.com/settings/project/github/nikhils778/docker-react/environment-variables
-          username: $USR_NAME
-          password: $USR_KEY
-jobs:
-  my-job-name:
 
-    executor: my-custom-executor
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.8
     steps:
       - checkout
-      - run: |
-          docker run nikhil7841/docker-create npm run test -- --coverage
+      - run:
+          name: Install dependencies
+          command: |
+            sudo apt-get update && sudo apt-get install -y docker
+      - run:
+          name: Build image
+          command: |
+            docker build -t nikhil7841/docker-app dockerfile.dev
+      - run:
+          name: Run tests
+          command: |
+            docker run -it nikhil7841/docker-app npm run test -- --coverage
 
-workflows:
-  my-custom-workflow:
-    jobs:
-      - my-job-name
